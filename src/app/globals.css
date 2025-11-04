@@ -160,3 +160,32 @@ body {
 
 
 .pin-spacer-gallery-st { background: #F7EBDC; }
+
+/* Stars positioning for banner - responsive offsets */
+.stars-container-ar {
+    left: calc(var(--container-x) + 0.5rem) !important;
+}
+
+.stars-container-en {
+    right: calc(var(--container-x) + 0.5rem) !important;
+}
+
+@media (min-width: 768px) {
+    .stars-container-ar {
+        left: calc(var(--container-x) + 1.5rem) !important;
+    }
+
+    .stars-container-en {
+        right: calc(var(--container-x) + 1.5rem) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .stars-container-ar {
+        left: calc(var(--container-x) + 3rem) !important;
+    }
+
+    .stars-container-en {
+        right: calc(var(--container-x) + 3rem) !important;
+    }
+}

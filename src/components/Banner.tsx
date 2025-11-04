@@ -50,14 +50,7 @@ export default function Banner() {
             <div className="absolute inset-0 z-[15] pointer-events-none">
                 <div className="container-x h-full relative">
                     <div 
-                        className={`absolute w-1/2 h-[calc(100%+80px)] top-[90px] md:top-[100px]`}
-                        style={isArabic ? { 
-                            left: "calc(var(--container-x) + 3rem)",
-                            right: "auto",
-                        } : {
-                            right: "calc(var(--container-x) + 3rem)",
-                            left: "auto",
-                        }}
+                        className={`absolute w-2/3 md:w-1/2 h-[calc(100%+80px)] top-[90px] md:top-[100px] ${isArabic ? 'stars-container-ar' : 'stars-container-en'}`}
                     >
                         <Image
                             src="/images/starts.svg"

@@ -64,11 +64,11 @@ function Card({ title, href }: { title: string; href?: string }) {
                 bg-[rgba(234,214,189,0.02)] backdrop-blur-md transition-all duration-200 ease-out
                 hover:backdrop-blur-lg hover:bg-[rgba(234,214,189,0.05)] hover:-translate-y-0.5"
         >
-            <div className={`${isArabic ? htmoshreqFont.className : arizonaSerif.className} whitespace-pre-line pr-10 text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] lg:leading-[40px] font-light`} style={{ color: "#EAD6BD" }}>
+            <div className={`${isArabic ? htmoshreqFont.className : arizonaSerif.className} whitespace-pre-line ${isArabic ? 'pl-10' : 'pr-10'} text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] lg:leading-[40px] font-light`} style={{ color: "#EAD6BD" }}>
                 {title}
             </div>
 
-            <div className="absolute bottom-4 right-4 opacity-80 transition-opacity duration-200 group-hover:opacity-100">
+            <div className={`absolute bottom-4 ${isArabic ? 'left-4' : 'right-4'} opacity-80 transition-opacity duration-200 group-hover:opacity-100`}>
                 <Image src="/icons/download-icon.png" alt="Download" width={24} height={24} className="w-6 h-6" />
             </div>
         </div>
