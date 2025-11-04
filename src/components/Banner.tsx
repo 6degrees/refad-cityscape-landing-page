@@ -1,80 +1,123 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import AnimatedText from "@/components/AnimatedText";
+import localFont from "next/font/local";
+import { useAppContext } from "@/context/AppContext";
 
-/*
-|--------------------------------------------------------------------------
-| $site-header
-|--------------------------------------------------------------------------
-|
-| Miraf top navigation (logo, links, language toggle, mobile drawer).
-| - Self-manages the mobile menu state.
-| - Receives `rtl` and `toggleDir` from the parent (page/layout).
-|
-| Usage:
-|   <Header rtl={rtl} toggleDir={toggleDir} />
-|
-*/
+const heroEnFont = localFont({
+    src: "../app/fonts/ABCArizonaSerif-Regular.woff",
+    display: "swap",
+});
+
+const heroArFont = localFont({
+    src: "../app/fonts/HTMoshreq-Regular.woff2",
+    display: "swap",
+});
+
+// Banner CTA font to match form heading style
+const ctaFont = localFont({
+    src: "../app/fonts/Graphik-Light.ttf",
+    display: "swap",
+});
+
 export default function Banner() {
-    /*
-    |--------------------------------------------------------------------------
-    | $i18n-translator
-    |--------------------------------------------------------------------------
-    | Get `t` for localized strings.
-    */
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const { selectedLanguage } = useAppContext();
+    const isArabic = selectedLanguage === "ar" || i18n?.language === "ar";
 
-    /*
-    |--------------------------------------------------------------------------
-    | $hero-section
-    |--------------------------------------------------------------------------
-    |
-    | Full-bleed hero with:
-    | - Background image + burgundy gradient overlay
-    | - Top navigation <Header />
-    | - Localized two-line title anchored to bottom (uses i18n: hero.line1/line2/palmAlt)
-    | - Uses Tailwind `container` and responsive bottom padding
-    |
-    */
     return (
-        <section className="relative h-[100svh] max-h-[1000px] text-white overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 -z-10">
-                <video
-                    className="h-full w-full object-cover"
-                    src="/videos/hero.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    aria-hidden="true"
-                />
-                <div className="absolute inset-0" style={{background: "linear-gradient(180deg, rgba(26,13,13,0) 0%, rgba(87,30,31,0.34) 46%, rgba(87,30,31,0.62) 70%, rgba(74,17,18,0.78) 85%, rgba(56,7,9,0.92) 100%)",}}/>
+        <section className="relative min-h-[100svh] overflow-visible bg-[#1a0d0d]">
+            {/* Background image */}
+            <Image
+                src="/icons/hero.png"
+                alt="Hero background"
+                fill
+                sizes="100vw"
+                className="object-cover z-0"
+                style={{ objectPosition: "center 85%", willChange: "transform", transform: "translateZ(0)" }}
+                priority
+                aria-hidden="true"
+            />
+
+            {/* Gradient overlay on top of image */}
+            <div
+                className="absolute inset-0 z-10 pointer-events-none"
+                style={{
+                    background:
+                        "linear-gradient(180deg, rgba(26,13,13,0.6) 0%, rgba(26,13,13,0.45) 55%, rgba(26,13,13,0.35) 85%, rgba(26,13,13,0.6) 100%)",
+                }}
+            />
+
+            {/* Decorative stars overlay (top-right for English, top-left for Arabic) aligned with navbar/container padding */}
+            <div className="absolute inset-0 z-[15] pointer-events-none">
+                <div className="container-x h-full relative">
+                    <div 
+                        className={`absolute w-1/2 h-[calc(100%+80px)] top-[90px] md:top-[100px]`}
+                        style={isArabic ? { 
+                            left: "calc(var(--container-x) + 3rem)",
+                            right: "auto",
+                        } : {
+                            right: "calc(var(--container-x) + 3rem)",
+                            left: "auto",
+                        }}
+                    >
+                        <Image
+                            src="/images/starts.svg"
+                            alt=""
+                            fill
+                            className={`object-contain`}
+                            style={isArabic ? { 
+                                transform: "scaleX(-1)",
+                                objectPosition: "100% center",
+                            } : {
+                                objectPosition: "100% center",
+                            }}
+                            priority
+                            sizes="(min-width: 1024px) 50vw, 60vw"
+                        />
+                    </div>
+                </div>
             </div>
 
-            {/* NAVBAR */}
-            <Header />
+            {/* Header on top of overlay */}
+            <div className="absolute inset-x-0 top-0 z-20">
+                <Header />
+            </div>
 
-            {/* HEADLINE */}
-            <div className="absolute bottom-0 left-0 right-0 z-10">
-                <div className="container-x">
-                    <div className="pb-20 md:pb-28 lg:pb-32">
-                        <h1 className="w-full md:max-w-5xl text-6xl sm:text-7xl md:text-8xl text-blush">
-                            <AnimatedText delay={0.2} direction="up" duration={1}>
-                                <span className="flex items-center gap-3">
-                                    <span className="inline">{t("hero.line1")}</span>
-                                    <Image src="/icons/palm.png" alt={t("hero.palmAlt")} height={80} width={80} className="inline-block h-12 w-12 md:h-16 md:w-16 object-contain image-hover"/>
-                                </span>
-                            </AnimatedText>
-                            <AnimatedText delay={0.4} direction="up" duration={1}>
-                                <span className="block">{t("hero.line2")}</span>
-                            </AnimatedText>
-                        </h1>
+            {/* Content on top of overlay */}
+            <div className="absolute inset-x-0 z-20 bottom-[28%] md:bottom-[30%] lg:bottom-[32%]">
+                <div className="container-x text-blush">
+                    <div className="w-full md:max-w-5xl">
+                        <AnimatedText delay={0.2} direction="up" duration={1}>
+                            <Image
+                                src="/images/hero-text.png"
+                                alt="Towards Elevated Living"
+                                width={1600}
+                                height={600}
+                                priority
+                                className="w-full h-auto no-hover-scale"
+                                sizes="(min-width: 1024px) 900px, 80vw"
+                            />
+                        </AnimatedText>
                     </div>
+
+                    <AnimatedText delay={0.6} direction="up" duration={1}>
+                        <div className={`${isArabic ? heroArFont.className : heroEnFont.className} flex flex-col gap-2 mt-4 md:mt-6`}>
+                            <span className="text-2xl md:text-3xl lg:text-4xl font-light">
+                                {t("hero.cta.line1")}
+                            </span>
+                            <span className="text-2xl md:text-3xl lg:text-4xl font-light">
+                                {t("hero.cta.line2")}
+                            </span>
+                            <Link href="/#register" aria-label="Scroll to registration form" className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mt-1">
+                                <Image src="/icons/arrow.svg" alt="" width={36} height={36} className="w-8 h-8 md:w-9 md:h-9" />
+                            </Link>
+                        </div>
+                    </AnimatedText>
                 </div>
             </div>
         </section>

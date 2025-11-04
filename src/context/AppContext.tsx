@@ -7,7 +7,7 @@
 |
 | Lightweight React Context to hold and update the current language.
 | - Persists language state in memory for the active session.
-| - Persists language to localStorage ("miraf-lang") for future reloads.
+| - Persists language to localStorage ("refad-lang") for future reloads.
 | - Notifies i18next to switch language whenever state changes.
 | - Exposes helpers to derive layout direction (rtl/ltr).
 |
@@ -29,7 +29,7 @@ import i18next from "i18next";
 | Key used for persisting language selection in localStorage.
 |
 */
-const STORAGE_KEY = "miraf-lang";
+const STORAGE_KEY = "refad-lang";
 
 /*
 |--------------------------------------------------------------------------

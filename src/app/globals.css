@@ -25,6 +25,10 @@ img:hover {
   transform: scale(1.05);
 }
 
+/* Utility: disable hover scale for specific images */
+.no-hover-scale { transition: none !important; }
+.no-hover-scale:hover { transform: none !important; }
+
 /* Typography - Use Kanun font for paragraphs, labels, and footer */
 p {
   font-family: var(--font-kanun-ar);
@@ -59,6 +63,7 @@ li {
   font-family: var(--font-kanun-ar);
 }
 
+
 html {
     scroll-behavior: smooth;
 }
@@ -66,6 +71,24 @@ html {
 /* Default font (for English) */
 body {
     font-family: var(--font-angie-sans-pro), sans-serif;
+    color: var(--color-blush);
+    background-color: #1a0d0d; /* fallback to avoid white flashes behind hero */
+}
+
+/* Global site background (exclude hero by applying this to wrappers below the hero) */
+.site-bg {
+    background-image: url('/images/02.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Avoid iOS/Safari repaint jank from fixed backgrounds */
+@media (max-width: 1024px) {
+  .site-bg {
+    background-attachment: scroll;
+  }
 }
 
 /* Arabic text (RTL) */
@@ -136,20 +159,4 @@ body {
 }
 
 
-#miraf-map .leaflet-pane.leaflet-tile-pane {
-    filter: sepia(0.95) saturate(6) hue-rotate(330deg) brightness(0.8);
-}
-
-.miraf-label {
-    color: #f9e8df;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 1.1;
-    text-align: center;
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.45);
-    pointer-events: none;
-}
-
-.pin-spacer-gallery-st {
-    background: #F7EBDC;
-}
+.pin-spacer-gallery-st { background: #F7EBDC; }

@@ -1,9 +1,14 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import {useTranslation} from "react-i18next";
 import AnimatedText from "@/components/AnimatedText";
+import localFont from "next/font/local";
+
+const graphikArabic = localFont({
+    src: "../app/fonts/Graphik-Light.ttf",
+    display: "swap",
+});
 
 /*
 |------------------------------------------------------------------------------
@@ -50,8 +55,8 @@ export default function CommunitySignupSection(
         subheading = "Sign Up Today!",
         onSubmitAction,
         className = "",
-        bgClass = "bg-blush",
-        textClass = "text-burgundy",
+        bgClass = "",
+        textClass = "text-blush",
     }: CommunitySignupSectionProps) {
     /*
     |--------------------------------------------------------------------------
@@ -99,79 +104,89 @@ export default function CommunitySignupSection(
     |
     */
     return (
-        <section id="register" className={`w-full ${bgClass} ${textClass} py-12 md:py-16 ${className} border-t-2 border-[#f4e8d5]`}>
+        <section id="register" className={`w-full ${textClass} pt-12 md:pt-16 pb-12 md:pb-16 ${className}`}>
             <div className="container-x">
                 <div className="flex flex-col md:flex-row items-start justify-between gap-10">
-                    {/* Left: Heading + Form */}
+                    {/* Left: Heading + Form (only column) */}
                     <AnimatedText delay={0.1} direction="up" duration={0.8}>
-                        <div className="w-full lg:w-auto lg:flex-1">
-                            <h2 className="font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+                        <div className={`w-full max-w-6xl ${graphikArabic.className} font-light`}>
+                            <h2 className={`${graphikArabic.className} tracking-tight text-2xl sm:text-3xl lg:text-4xl font-light`}>
                                 {heading}
                             </h2>
-                            <p className="mt-2 text-xl sm:text-2xl opacity-90">{subheading}</p>
+                            {subheading && (<p className={`${graphikArabic.className} mt-2 text-lg sm:text-xl opacity-80 font-light`}>{subheading}</p>)}
 
                             <form onSubmit={handleSubmit} className="mt-8">
                                 {/* Two-column form rows (still grid inside form) */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
                                     {/* First Name */}
                                     <div>
-                                        <label className="block text-sm mb-2 font-kanun">{t("signup.form.firstName.label")}</label>
-                                        <input type="text" name="firstName" className="w-full bg-transparent border-0 border-b border-burgundy/40 focus:border-burgundy focus:outline-none py-1" required/>
+                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>
+                                            <span className="mr-1">*</span>{t("signup.form.firstName.label")}
+                                        </label>
+                                        <input type="text" name="firstName" placeholder="" className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`} required/>
                                     </div>
 
                                     {/* Surname */}
                                     <div>
-                                        <label className="block text-sm mb-2 font-kanun">{t("signup.form.surname.label")}</label>
-                                        <input type="text" name="surname" className="w-full bg-transparent border-0 border-b border-burgundy/40 focus:border-burgundy focus:outline-none py-1" required/>
+                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>
+                                            <span className="mr-1">*</span>{t("signup.form.surname.label")}
+                                        </label>
+                                        <input type="text" name="surname" className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`} required/>
                                     </div>
 
                                     {/* Email */}
                                     <div>
-                                        <label className="block text-sm mb-2 font-kanun">{t("signup.form.email.label")}</label>
-                                        <input type="email" name="email" className="w-full bg-transparent border-0 border-b border-burgundy/40 focus:border-burgundy focus:outline-none py-1" required/>
+                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>
+                                            <span className="mr-1">*</span>{t("signup.form.email.label")}
+                                        </label>
+                                        <input type="email" name="email" className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`} required/>
                                     </div>
 
                                     {/* Phone Number */}
                                     <div>
-                                        <label className="block text-sm mb-2 font-kanun">{t("signup.form.phone.label")}</label>
-                                        <input type="tel" name="phone" className="w-full bg-transparent border-0 border-b border-burgundy/40 focus:border-burgundy focus:outline-none py-1"/>
+                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>
+                                            {t("signup.form.phone.label")}
+                                        </label>
+                                        <div className="flex items-center">
+                                            <span className={`${graphikArabic.className} text-blush/70 mr-2`}>+966</span>
+                                            <input type="tel" name="phone" className={`${graphikArabic.className} flex-1 bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                        </div>
                                     </div>
 
                                     {/* Request Type */}
-                                    <div>
-                                        <label className="block text-sm mb-2 font-kanun">{t("signup.form.requestType.label")}</label>
+                                    <div className="sm:col-span-2">
+                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>
+                                            <span className="mr-1">*</span>{t("signup.form.requestType.label")}
+                                        </label>
                                         <div className="relative">
-                                            <select name="requestType" className="appearance-none w-full bg-transparent border-0 border-b border-burgundy/40 focus:border-burgundy focus:outline-none py-1 pr-6" defaultValue="" required>
+                                            <select name="requestType" className={`${graphikArabic.className} appearance-none w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 pr-10`} defaultValue="" required>
                                                 <option value="" disabled>
                                                     {t("signup.form.requestType.options.0")}
                                                 </option>
                                                 <option value="other">{t("signup.form.requestType.options.1")}</option>
                                             </select>
-                                            <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-sm"></span>
+                                            <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-sm text-blush/70">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                                                    <path fillRule="evenodd" d="M12 14.5a1 1 0 0 1-.7-.3l-5-5a1 1 0 1 1 1.4-1.4L12 12.1l4.3-4.3a1 1 0 0 1 1.4 1.4l-5 5a1 1 0 0 1-.7.3z" clipRule="evenodd" />
+                                                </svg>
+                                            </span>
                                         </div>
                                     </div>
 
-                                    {/* Subject */}
+                                    {/* Message */}
                                     <div className="sm:col-span-2">
-                                        <label className="block text-sm mb-2 font-kanun">{t("signup.form.subject.label")}</label>
-                                        <input type="text" name="subject" className="w-full bg-transparent border-0 border-b border-burgundy/40 focus:border-burgundy focus:outline-none py-1"/>
+                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>{t("signup.form.subject.label")}</label>
+                                        <textarea name="subject" rows={3} className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 resize-none`}/>
                                     </div>
                                 </div>
 
                                 {/* Send button */}
-                                <div className="mt-6 text-end">
-                                    <button type="submit" className="inline-flex items-center justify-center rounded-full border border-burgundy/60 px-5 py-1.5 text-sm hover:bg-burgundy/5 transition">
+                                <div className="mt-8">
+                                    <button type="submit" className={`${graphikArabic.className} inline-flex items-center justify-center rounded-full border border-blush px-8 py-3 text-base hover:bg-blush/10 transition`}>
                                         {t("signup.form.send.label")}
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                    </AnimatedText>
-
-                    {/* Right: Decorative blobs */}
-                    <AnimatedText delay={0.2} direction="up" duration={0.8}>
-                        <div className="relative hidden lg:flex md:flex-1 justify-center items-center">
-                            <Image src="/icons/ml_Icon_32.png" alt="Community signup icon" height="500" width="500" className="object-contain image-hover" loading="lazy"/>
                         </div>
                     </AnimatedText>
                 </div>

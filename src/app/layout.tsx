@@ -4,7 +4,6 @@ import {AppProvider} from "@/context/AppContext";
 import i18n from "i18next";
 import I18nProvider from "@/providers/I18nProvider";
 import LangDirEffect from "@/components/LangDirEffect";
-import AppLoaderProvider from "@/providers/AppLoaderProvider";
 import CustomCursor from "@/components/CustomCursor";
 
 /*
@@ -18,18 +17,18 @@ import CustomCursor from "@/components/CustomCursor";
 */
 export const metadata = {
     title: {
-        default: "Miraf District - Premium Mixed-Use Development in Khobar, Saudi Arabia",
-        template: "%s | Miraf District"
+        default: "Refad | Real Estate Investment & Development",
+        template: "%s | Refad"
     },
-    description: "Discover Miraf District, a premium mixed-use development in Khobar featuring residential towers, business offices, retail spaces, and Hotel INDIGO. Experience luxury living and working in the heart of Saudi Arabia.",
+    description: "Refad Real Estate Investment & Development creates innovative lifestyle destinations across Saudi Arabia, delivering residential, mixed-use and logistics developments that elevate modern living.",
     keywords: [
-        "Miraf District",
+        "Refad",
         "Khobar real estate",
         "Saudi Arabia property",
         "mixed-use development",
         "residential towers",
         "business offices",
-        "Hotel INDIGO",
+        "logistics solutions",
         "retail spaces",
         "luxury living",
         "premium apartments",
@@ -47,7 +46,7 @@ export const metadata = {
         address: false,
         telephone: false,
     },
-    metadataBase: new URL('https://your-domain.com'),
+    metadataBase: new URL('http://cityscape.refad.com.sa/'),
     alternates: {
         canonical: '/',
         languages: {
@@ -56,16 +55,16 @@ export const metadata = {
         },
     },
     openGraph: {
-        title: "Miraf District - Premium Mixed-Use Development in Khobar",
-        description: "Discover Miraf District, a premium mixed-use development in Khobar featuring residential towers, business offices, retail spaces, and Hotel INDIGO.",
-        url: 'https://your-domain.com',
-        siteName: 'Miraf District',
+        title: "Refad | Real Estate Investment & Development",
+        description: "Refad develops destinations that elevate lifestyles across Saudi Arabia, spanning residential, mixed-use and logistics projects.",
+        url: 'http://cityscape.refad.com.sa/',
+        siteName: 'Refad',
         images: [
             {
                 url: '/images/miraf-og.png',
                 width: 1200,
                 height: 630,
-                alt: 'Miraf District - Premium Mixed-Use Development',
+                alt: 'Refad - Real Estate Investment & Development',
             },
         ],
         locale: 'en_US',
@@ -73,8 +72,8 @@ export const metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: "Miraf District - Premium Mixed-Use Development in Khobar",
-        description: "Discover Miraf District, a premium mixed-use development in Khobar featuring residential towers, business offices, retail spaces, and Hotel INDIGO.",
+        title: "Refad | Real Estate Investment & Development",
+        description: "Refad develops destinations that elevate lifestyles across Saudi Arabia.",
         images: ['/images/miraf-og.png'],
     },
     robots: {
@@ -95,124 +94,42 @@ export const metadata = {
 
 /*
 |--------------------------------------------------------------------------
-| $fonts
+| $fonts (updated to existing files only)
 |--------------------------------------------------------------------------
-|
-| Registers local fonts via Next.js `next/font/local` and exposes CSS
-| variables on <body> for use across the app (Tailwind/CSS).
-|
-| Variables:
-|   --font-abc-arizona-serif
-|   --font-angie-sans-pro
-|   --font-graphik-arabic
-|   --font-kanun-ar
-|   --font-lyon-arabic
-|
 */
 
-/*
-| ABC Arizona Serif — Display (EN)
-| variable: --font-abc-arizona-serif | weights: 300
-*/
+// English Display
 const abcArizonaSerif = localFont({
-    src: [
-        { path: "./fonts/ABCArizonaSerif-Light.otf", weight: "300", style: "normal" },
-    ],
+    src: [{ path: "./fonts/ABCArizonaSerif-Regular.woff", weight: "400", style: "normal" }],
     variable: "--font-abc-arizona-serif",
     display: "swap",
 });
 
-/*
-| Angie Sans Pro — UI Sans (EN)
-| variable: --font-angie-sans-pro | weights: 400, 600
-*/
-const angieSansPro = localFont({
-    src: [
-        { path: "./fonts/AngieSansPro-Regular.otf", weight: "400", style: "normal" },
-        { path: "./fonts/AngieSansPro-Demi.otf", weight: "600", style: "normal" },
-    ],
-    variable: "--font-angie-sans-pro",
+// English UI
+const graphikEn = localFont({
+    src: [{ path: "./fonts/Graphik-Light.otf", weight: "300", style: "normal" }],
+    variable: "--font-graphik-en",
     display: "swap",
 });
 
-/*
-| Graphik Arabic — UI Sans (AR)
-| variable: --font-graphik-arabic | weights: 400
-*/
+// Arabic UI
 const graphikArabic = localFont({
-    src: [
-        { path: "./fonts/GraphikArabic-Regular.otf", weight: "400", style: "normal" },
-    ],
+    src: [{ path: "./fonts/GraphikArabic-Regular.otf", weight: "400", style: "normal" }],
     variable: "--font-graphik-arabic",
     display: "swap",
 });
 
-/*
-| Kanun AR+ — Accent (AR)
-| variable: --font-kanun-ar | weights: 300, 400, 500
-*/
-const kanunAR = localFont({
-    src: [
-        { path: "./fonts/KanunAR+LT-Light.otf", weight: "300", style: "normal" },
-        { path: "./fonts/KanunAR+LT-Regular.otf", weight: "400", style: "normal" },
-        { path: "./fonts/KanunAR+LT-Medium.otf", weight: "500", style: "normal" },
-    ],
-    variable: "--font-kanun-ar",
-    display: "swap",
-});
-
-/*
-| Lyon Arabic Display — Headlines (AR)
-| variable: --font-lyon-arabic | weights: 300, 400
-*/
-const lyonArabic = localFont({
-    src: [
-        { path: "./fonts/LyonArabicDisplay-Light.otf", weight: "300", style: "normal" },
-        { path: "./fonts/LyonArabicDisplay-Regular.otf", weight: "400", style: "normal" },
-    ],
-    variable: "--font-lyon-arabic",
-    display: "swap",
-});
-
-/*
-|--------------------------------------------------------------------------
-| $root-layout
-|--------------------------------------------------------------------------
-|
-| Top-level layout:
-| - Wraps the app with <AppProvider> (language/context state).
-| - Sets <html lang/dir> from the current i18n language.
-| - Applies local font CSS variables on <body> for Tailwind/CSS usage.
-| - Injects <I18nProvider> so react-i18next hooks work in children.
-|
-*/
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    /*
-    |--------------------------------------------------------------------------
-    | $root-layout
-    |--------------------------------------------------------------------------
-    |
-    | Composition order (top → bottom):
-    | - <AppProvider>    : App-wide state (language context, etc.)
-    | - <html lang/dir>  : Defaults from i18n; client sync via <LangDirEffect />
-    | - <body className> : Registers local font CSS variables for Tailwind/CSS
-    | - <I18nProvider>   : Enables react-i18next hooks throughout subtree
-    | - <LangDirEffect>  : Keeps <html lang/dir> in sync after client switches
-    | - {children}       : Page content
-    |
-    */
     return (
         <html lang={i18n.language || "en"} dir={i18n.language === "ar" ? "rtl" : "ltr"}>
-        <body className={[abcArizonaSerif.variable, angieSansPro.variable, graphikArabic.variable, kanunAR.variable, lyonArabic.variable,].join(" ")}>
+        <body className={[abcArizonaSerif.variable, graphikEn.variable, graphikArabic.variable].join(" ") }>
         <CustomCursor />
-        <AppLoaderProvider>
-            <AppProvider>
-                <I18nProvider>
-                    <LangDirEffect />
-                    {children}
-                </I18nProvider>
-            </AppProvider>
-        </AppLoaderProvider>
+        <AppProvider>
+            <I18nProvider>
+                <LangDirEffect />
+                {children}
+            </I18nProvider>
+        </AppProvider>
 
         </body>
         </html>

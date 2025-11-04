@@ -16,14 +16,12 @@ export default function StructuredData() {
 
     const structuredData = {
         "@context": "https://schema.org",
-        "@type": "RealEstateProject",
-        "name": "Miraf District",
-        "description": t("about.0.cards.0.body"),
-        // "url": "https://miraf-district.com",
+        "@type": "Organization",
+        "name": "Refad Real Estate Investment & Development",
+        "description": "Refad develops residential, mixed-use and logistics destinations that elevate modern living across Saudi Arabia.",
+        "url": "http://cityscape.refad.com.sa/",
         "image": [
-            "https://miraf-district.com/images/miraf_renders_10edited.png",
-            "https://miraf-district.com/images/full_project.png",
-            "https://miraf-district.com/images/02_Cam1_Road_Front_Building_06.jpg"
+            "/icons/logo.png"
         ],
         "address": {
             "@type": "PostalAddress",
@@ -31,44 +29,16 @@ export default function StructuredData() {
             "addressRegion": "Eastern Province",
             "addressCountry": "SA"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "26.2959",
-            "longitude": "50.215"
-        },
-        "developer": {
-            "@type": "Organization",
-            "name": "Refad Development",
-            "url": "https://refad.com",
-            "description": t("developer.bodyTop")
-        },
-        "amenities": [
-            "Residential Towers",
-            "Business Offices", 
-            "Retail Spaces",
-            "Hotel INDIGO",
-            "Shopping Plaza",
-            "Swimming Pool",
-            "Fitness Center",
-            "Green Spaces"
-        ],
-        "numberOfUnits": 152,
-        "totalArea": "49,194 sqm",
-        "completionDate": "2025",
-        "priceRange": {
-            "@type": "PriceSpecification",
-            "priceCurrency": "SAR"
-        },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+966-13-XXX-XXXX",
+            "telephone": "+966920031839",
             "contactType": "sales",
             "areaServed": "SA",
             "availableLanguage": ["English", "Arabic"]
         },
         "sameAs": [
-            "https://www.instagram.com/mirafdistrict",
-            "https://www.linkedin.com/company/miraf-district"
+            "https://www.instagram.com/refad_ksa/",
+            "https://www.linkedin.com/company/refad-for-real-estate-investment-and-development/"
         ]
     };
 
