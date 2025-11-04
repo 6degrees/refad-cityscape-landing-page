@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Banner from "@/components/Banner";
 import {useTranslation} from "react-i18next";
 import CommunitySignupSection from "@/components/CommunitySignupSection";
@@ -28,6 +29,18 @@ export default function HomePage() {
     */
     const {t} = useTranslation();
 
+    // Auto-scroll to resources section on page load
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const resourcesSection = document.getElementById('resources');
+            if (resourcesSection) {
+                resourcesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100); // Small delay to ensure page is fully rendered
+
+        return () => clearTimeout(timer);
+    }, []);
+
     /*
     |------------------------------------------------------------------------------
     | $page-render
@@ -38,10 +51,8 @@ export default function HomePage() {
     | - Wraps all major homepage sections inside a <main> container.
     | - Sequentially composes the full layout:
     |     → Banner: hero introduction
-    |     → Residences: residential highlight section
-    |     → Gallery: image showcase
-    |     → Developer: developer information + call to action
     |     → CommunitySignupSection: sign-up form for engagement
+    |     → Resources: downloadable resources section
     |     → Footer: bottom navigation + contact details
     | - Uses translation keys (t) for localized content.
     | - Ensures consistent structure across Arabic and English layouts.

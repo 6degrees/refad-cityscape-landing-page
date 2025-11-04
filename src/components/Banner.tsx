@@ -18,12 +18,6 @@ const heroArFont = localFont({
     display: "swap",
 });
 
-// Banner CTA font to match form heading style
-const ctaFont = localFont({
-    src: "../app/fonts/Graphik-Light.ttf",
-    display: "swap",
-});
-
 export default function Banner() {
     const { t, i18n } = useTranslation();
     const { selectedLanguage } = useAppContext();
@@ -114,7 +108,7 @@ export default function Banner() {
                                 {t("hero.cta.line2")}
                             </span>
                             <Link href="/#register" aria-label="Scroll to registration form" className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mt-1">
-                                <Image src="/icons/arrow.svg" alt="" width={36} height={36} className="w-8 h-8 md:w-9 md:h-9" />
+                                <Image src="/icons/arrow.svg" alt="Scroll to registration form" width={36} height={36} className="w-8 h-8 md:w-9 md:h-9" />
                             </Link>
                         </div>
                     </AnimatedText>

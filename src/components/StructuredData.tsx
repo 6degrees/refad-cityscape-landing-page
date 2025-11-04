@@ -21,7 +21,7 @@ export default function StructuredData() {
         "description": "Refad develops residential, mixed-use and logistics destinations that elevate modern living across Saudi Arabia.",
         "url": "http://cityscape.refad.com.sa/",
         "image": [
-            "/icons/logo.png"
+            "http://cityscape.refad.com.sa/icons/logo.png"
         ],
         "address": {
             "@type": "PostalAddress",
@@ -38,7 +38,8 @@ export default function StructuredData() {
         },
         "sameAs": [
             "https://www.instagram.com/refad_ksa/",
-            "https://www.linkedin.com/company/refad-for-real-estate-investment-and-development/"
+            "https://www.linkedin.com/company/refad-for-real-estate-investment-and-development/",
+            "https://x.com/refad_ksa"
         ]
     };
 

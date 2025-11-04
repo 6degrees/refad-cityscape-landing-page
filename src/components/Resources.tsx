@@ -37,7 +37,7 @@ export default function Resources({
     const resourcesHeading = heading || t("resources.heading");
     const resourcesItems: Resource[] = items || (t("resources.items", { returnObjects: true }) as string[]).map((title: string) => ({ title }));
     return (
-        <section className={`w-full pt-8 md:pt-12 pb-12 md:pb-20 ${className}`}>
+        <section id="resources" className={`w-full pt-8 md:pt-12 pb-12 md:pb-20 ${className}`}>
             <div className="container-x">
                 <h3 className="text-lg md:text-xl lg:text-2xl text-blush font-light pb-4 md:pb-6 mb-6 md:mb-8">
                     {resourcesHeading}

@@ -4,6 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/context/AppContext";
+import localFont from "next/font/local";
+
+const graphikArabic = localFont({
+    src: "../app/fonts/GraphikArabic-Regular.otf",
+    display: "swap",
+});
 
 /*
 |------------------------------------------------------------------------------
@@ -81,7 +87,7 @@ export default function Footer(
     |------------------------------------------------------------------------------
     */
     return (
-        <footer className={`${textClass} ${className} font-kanun`}>
+        <footer className={`${textClass} ${className} ${graphikArabic.className}`}>
             <div className="container-x">
                 {/* Divider Line */}
                 <div className="border-t border-blush/20" />

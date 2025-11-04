@@ -61,7 +61,7 @@ export const metadata = {
         siteName: 'Refad',
         images: [
             {
-                url: '/images/miraf-og.png',
+                url: 'http://cityscape.refad.com.sa/images/refad-og.png',
                 width: 1200,
                 height: 630,
                 alt: 'Refad - Real Estate Investment & Development',
@@ -74,7 +74,7 @@ export const metadata = {
         card: 'summary_large_image',
         title: "Refad | Real Estate Investment & Development",
         description: "Refad develops destinations that elevate lifestyles across Saudi Arabia.",
-        images: ['/images/miraf-og.png'],
+        images: ['http://cityscape.refad.com.sa/images/refad-og.png'],
     },
     robots: {
         index: true,
