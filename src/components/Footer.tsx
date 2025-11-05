@@ -76,7 +76,7 @@ export default function Footer(
     const socials = {
         instagram: "https://www.instagram.com/refad_ksa/",
         linkedin: "https://www.linkedin.com/company/refad-for-real-estate-investment-and-development/",
-        x: "https://www.linkedin.com/company/refad-for-real-estate-investment-and-development/",
+        x: "https://x.com/Refad_ksa?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor",
     };
 
     const addressStreet = t("footer.address", { returnObjects: true }) as string[];
