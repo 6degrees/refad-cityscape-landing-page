@@ -28,7 +28,60 @@ export default {
                 label: "Request Type",
                 options: [
                     "Choose...",
-                    "Other"
+                    "Miraf District",
+                    "Business Hub",
+                    "Refad Compound",
+                    "Logistics Solutions",
+                    "Partnership & Investment",
+                    "Support",
+                    "HR Department",
+                    "Vendor Registration"
+                ]
+            },
+            contactSource: {
+                label: "Contact Source",
+                options: [
+                    "Choose...",
+                    "Online",
+                    "Digital",
+                    "SMS",
+                    "Self Generated",
+                    "TV",
+                    "Broker",
+                    "Call Center",
+                    "Campaign",
+                    "Event",
+                    "Exhibitation",
+                    "Outdoors",
+                    "Sales Center",
+                    "Phone Calls",
+                    "Social Media",
+                    "Manual Entry",
+                    "Landing Pages"
+                ]
+            },
+            subSource: {
+                label: "Sub-Source",
+                options: [
+                    "Choose...",
+                    "Refad Website",
+                    "Facebook",
+                    "Instagram",
+                    "Youtube",
+                    "Tiktok",
+                    "X",
+                    "Snapchat",
+                    "Email",
+                    "SMS",
+                    "WhatsApp",
+                    "LinkedIn",
+                    "Manual Entry",
+                    "Excel sheet",
+                    "Phone Call Log",
+                    "Through Landing Page Form",
+                    "Direct Message",
+                    "Google Ads",
+                    "Cityscape"
                 ]
             },
             subject: {

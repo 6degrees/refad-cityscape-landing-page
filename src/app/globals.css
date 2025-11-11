@@ -66,6 +66,7 @@ li {
 
 html {
     scroll-behavior: smooth;
+    background-color: #1a0d0d;
 }
 
 /* Default font (for English) */
