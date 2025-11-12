@@ -42,6 +42,7 @@ export default function CommunitySignupSection(
     */
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = e.currentTarget;
         const formData = new FormData(e.currentTarget);
 
         try {
@@ -53,7 +54,7 @@ export default function CommunitySignupSection(
             const result = await response.json();
             if (result.success) {
                 alert("Your registration has been submitted successfully!");
-                e.currentTarget.reset();
+                form.reset();
             } else {
                 alert("Failed to send. Please try again later.");
             }
