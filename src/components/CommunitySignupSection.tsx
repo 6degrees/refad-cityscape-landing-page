@@ -43,24 +43,28 @@ export default function CommunitySignupSection(
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
-        const formData = new FormData(e.currentTarget);
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
+
+        formData.forEach((value, key) => {
+            params.append(key, value.toString());
+        });
 
         try {
-            const response = await fetch("/api/submit-registration", {
-                method: "POST",
-                body: formData,
-            });
+            const response = await fetch(
+                `https://link.by.refad.com.sa/u/register.php?${params.toString()}`,
+                {
+                    method: "GET",
+                    mode: "no-cors",
+                }
+            );
 
-            const result = await response.json();
-            if (result.success) {
-                alert("Your registration has been submitted successfully!");
-                form.reset();
-            } else {
-                alert("Failed to send. Please try again later.");
-            }
+            // Note: With "no-cors", you cannot read the response content
+            alert("Your registration has been submitted successfully!");
+            form.reset();
         } catch (error) {
             console.error(error);
-            alert("Failed to send. Please try again later.");
+            alert("Failed to submit. Please try again later.");
         }
     };
 
