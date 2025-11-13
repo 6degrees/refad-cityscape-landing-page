@@ -128,6 +128,7 @@ export default function CommunitySignupSection(
                                 <input type="hidden" name="mailnow" value="" />
                                 <input type="hidden" name="inp_9144" value="9" />
                                 <input type="hidden" name="inp_9145" value="19" />
+                                <input type="hidden" name="optin" value="y" />
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
                                     {/* First Name */}
