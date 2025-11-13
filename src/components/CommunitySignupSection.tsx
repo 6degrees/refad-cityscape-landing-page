@@ -73,30 +73,35 @@ export default function CommunitySignupSection(
 
         // Get phone number from form
         const phoneNumber = formData.get("phone_number") as string;
-        
+
         // Combine country code with phone number
         const fullPhoneNumber = phoneNumber ? `${countryCode}${phoneNumber}` : "";
-        
+
         // Remove the separate phone_number field and add the combined value to inp_15
         formData.delete("phone_number");
         if (fullPhoneNumber) {
             formData.set("inp_15", fullPhoneNumber);
         }
 
-        try {
-            const response = await fetch("/api/submit-registration", {
-                method: "POST",
-                body: formData,
-            });
+        // Convert all form data to URL parameters
+        const params = new URLSearchParams();
+        formData.forEach((value, key) => {
+            params.append(key, value.toString());
+        });
 
-            const result = await response.json();
-            if (result.success) {
-                alert("Your registration has been submitted successfully!");
-                form.reset();
-                setCountryCode("+966"); // Reset to default
-            } else {
-                alert("Failed to send. Please try again later.");
-            }
+        try {
+            const response = await fetch(
+                `https://link.by.refad.com.sa/u/register.php?${params.toString()}`,
+                {
+                    method: "GET",
+                    mode: "no-cors", // Needed to bypass CORS when running on GitHub Pages
+                }
+            );
+
+            // Note: With "no-cors" mode you can’t read the response
+            alert("Your registration has been submitted successfully!");
+            form.reset();
+            setCountryCode("+966"); // Reset to default
         } catch (error) {
             console.error(error);
             alert("Failed to send. Please try again later.");
