@@ -27,7 +27,7 @@ export default function Banner() {
         <section className="relative min-h-[100svh] overflow-visible bg-[#1a0d0d]">
             {/* Background image */}
             <Image
-                src="/icons/hero.png"
+                src="/icons/hero.webp"
                 alt="Hero background"
                 fill
                 sizes="100vw"
@@ -81,7 +81,7 @@ export default function Banner() {
                     <div className="w-full md:max-w-5xl">
                         <AnimatedText delay={0.2} direction="up" duration={1}>
                             <Image
-                                src="/images/hero-text.png"
+                                src="/images/hero-text.webp"
                                 alt="Towards Elevated Living"
                                 width={1600}
                                 height={600}

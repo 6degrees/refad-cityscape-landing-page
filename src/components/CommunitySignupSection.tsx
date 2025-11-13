@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AnimatedText from "@/components/AnimatedText";
 import localFont from "next/font/local";
@@ -27,6 +27,31 @@ export default function CommunitySignupSection(
     }: CommunitySignupSectionProps)
 {
     const { t } = useTranslation();
+    const [countryCode, setCountryCode] = useState("+966");
+
+    // Common country codes
+    const countryCodes = [
+        { code: "+966", country: "Saudi Arabia" },
+        { code: "+971", country: "UAE" },
+        { code: "+965", country: "Kuwait" },
+        { code: "+974", country: "Qatar" },
+        { code: "+973", country: "Bahrain" },
+        { code: "+968", country: "Oman" },
+        { code: "+20", country: "Egypt" },
+        { code: "+1", country: "USA/Canada" },
+        { code: "+44", country: "UK" },
+        { code: "+33", country: "France" },
+        { code: "+49", country: "Germany" },
+        { code: "+39", country: "Italy" },
+        { code: "+34", country: "Spain" },
+        { code: "+61", country: "Australia" },
+        { code: "+91", country: "India" },
+        { code: "+86", country: "China" },
+        { code: "+81", country: "Japan" },
+        { code: "+82", country: "South Korea" },
+        { code: "+65", country: "Singapore" },
+        { code: "+60", country: "Malaysia" },
+    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -35,6 +60,7 @@ export default function CommunitySignupSection(
     |
     | - Collects input values from the form
     | - Maps them to Emarsys field names (inp_1, inp_2, etc.)
+    | - Combines country code with phone number before sending
     | - Adds hidden fixed values for Contact Source, Sub-Source, and Opt-in
     | - Sends them through a Next.js API Route (server-side request)
     |   → Next.js then sends data to Emarsys endpoint via GET request
@@ -44,6 +70,18 @@ export default function CommunitySignupSection(
         e.preventDefault();
         const form = e.currentTarget;
         const formData = new FormData(e.currentTarget);
+
+        // Get phone number from form
+        const phoneNumber = formData.get("phone_number") as string;
+        
+        // Combine country code with phone number
+        const fullPhoneNumber = phoneNumber ? `${countryCode}${phoneNumber}` : "";
+        
+        // Remove the separate phone_number field and add the combined value to inp_15
+        formData.delete("phone_number");
+        if (fullPhoneNumber) {
+            formData.set("inp_15", fullPhoneNumber);
+        }
 
         try {
             const response = await fetch("/api/submit-registration", {
@@ -55,6 +93,7 @@ export default function CommunitySignupSection(
             if (result.success) {
                 alert("Your registration has been submitted successfully!");
                 form.reset();
+                setCountryCode("+966"); // Reset to default
             } else {
                 alert("Failed to send. Please try again later.");
             }
@@ -118,9 +157,30 @@ export default function CommunitySignupSection(
                                     {/* Phone */}
                                     <div>
                                         <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>{t("signup.form.phone.label")}</label>
-                                        <div className="flex items-center">
-                                            <span className={`${graphikArabic.className} text-blush/70 mr-2`}>+966</span>
-                                            <input type="tel" name="inp_15" className={`${graphikArabic.className} flex-1 bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                        <div className="flex items-center gap-2">
+                                            <div className="relative" style={{ minWidth: "120px" }}>
+                                                <select 
+                                                    value={countryCode}
+                                                    onChange={(e) => setCountryCode(e.target.value)}
+                                                    className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 text-blush/70 appearance-none pr-6 cursor-pointer`}
+                                                >
+                                                    {countryCodes.map((item) => (
+                                                        <option key={item.code} value={item.code} className="bg-[#1a0d0d] text-blush">
+                                                            {item.code} {item.country}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                                                    <svg className="w-4 h-4 text-blush/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <input 
+                                                type="tel" 
+                                                name="phone_number" 
+                                                className={`${graphikArabic.className} flex-1 bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}
+                                            />
                                         </div>
                                     </div>
 

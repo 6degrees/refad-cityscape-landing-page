@@ -78,7 +78,7 @@ body {
 
 /* Global site background (exclude hero by applying this to wrappers below the hero) */
 .site-bg {
-    background-image: url('/images/02.png');
+    background-image: url('/images/02.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

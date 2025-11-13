@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Banner from "@/components/Banner";
 import {useTranslation} from "react-i18next";
 import CommunitySignupSection from "@/components/CommunitySignupSection";
@@ -28,18 +27,6 @@ export default function HomePage() {
     |
     */
     const {t} = useTranslation();
-
-    // Auto-scroll to resources section on page load
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            const resourcesSection = document.getElementById('resources');
-            if (resourcesSection) {
-                resourcesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, 100); // Small delay to ensure page is fully rendered
-
-        return () => clearTimeout(timer);
-    }, []);
 
     /*
     |------------------------------------------------------------------------------
