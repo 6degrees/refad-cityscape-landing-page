@@ -154,7 +154,7 @@ export default function CommunitySignupSection(
                                         <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>{t("signup.form.phone.label")}</label>
                                         <div className="flex items-center gap-2">
                                             <div className="relative" style={{ minWidth: "120px" }}>
-                                                <select value={countryCode} name="inp_9142" onChange={(e) => setCountryCode(e.target.value)} className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 text-blush/70 appearance-none pr-6 cursor-pointer`}>
+                                                <select value={countryCode} name="inp_9142" required onChange={(e) => setCountryCode(e.target.value)} className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 text-blush/70 appearance-none pr-6 cursor-pointer`}>
                                                     {countryCodes.map((item) => (
                                                         <option key={item.code} value={item.code} className="bg-[#1a0d0d] text-blush">
                                                             {item.code} {item.country}
@@ -167,7 +167,7 @@ export default function CommunitySignupSection(
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <input type="tel" name="inp_15" className={`${graphikArabic.className} flex-1 bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                            <input type="tel" name="inp_15" required className={`${graphikArabic.className} flex-1 bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
                                         </div>
                                     </div>
 
