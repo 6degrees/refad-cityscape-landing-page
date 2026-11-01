@@ -60,9 +60,12 @@ export default function Header() {
                             {t("nav.contactUs")}
                         </Link>
                         <button
+                            type="button"
+                            aria-label={selectedLanguage === "ar" ? "Switch to English" : "التبديل إلى العربية"}
+                            lang={selectedLanguage === "ar" ? "en" : "ar"}
                             onClick={() => handleLanguageSelection(selectedLanguage)}
                             className={`rounded-full border border-white/60 px-4 py-2 cursor-pointer text-white/95 hover:bg-white/10 transition-colors duration-300 ${selectedLanguage === 'ar' ? "en-display" : "ar-display"}`}>
-                            {selectedLanguage === 'ar' ? "En" : "Ar"}
+                            {selectedLanguage === 'ar' ? "English" : "عربي"}
                         </button>
                     </nav>
 
@@ -72,9 +75,12 @@ export default function Header() {
                             {t("nav.contactUs")}
                         </Link>
                         <button
+                            type="button"
+                            aria-label={selectedLanguage === "ar" ? "Switch to English" : "التبديل إلى العربية"}
+                            lang={selectedLanguage === "ar" ? "en" : "ar"}
                             onClick={() => handleLanguageSelection(selectedLanguage)}
                             className={`rounded-full border border-white/60 px-3 py-1.5 text-sm cursor-pointer text-white/95 hover:bg-white/10 transition-colors duration-300 ${selectedLanguage === 'ar' ? "en-display" : "ar-display"}`}>
-                            {selectedLanguage === 'ar' ? "En" : "Ar"}
+                            {selectedLanguage === 'ar' ? "English" : "عربي"}
                         </button>
                     </nav>
                 </div>
@@ -83,3 +89,4 @@ export default function Header() {
         </header>
     );
 }
+

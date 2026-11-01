@@ -9,14 +9,14 @@ export default {
         }
     },
     signup: {
-        title: "Register your interest now to receive more information about our work",
+        title: "Register your interest to get more information about our developments",
         subtitle: "",
         form: {
             firstName: {
                 label: "First Name"
             },
             surname: {
-                label: "Surname"
+                label: "Last Name"
             },
             email: {
                 label: "Email"
@@ -85,7 +85,7 @@ export default {
                 ]
             },
             subject: {
-                label: "Subject"
+                label: "Message"
             },
             send: {
                 label: "Send"
@@ -94,13 +94,7 @@ export default {
     },
     resources: {
         heading: "Discover life from a new perspective with Rafad",
-        items: [
-            "Refad Company Profile\n- Arabic",
-            "Refad Company Profile\n- English",
-            "Miraf District\nBrochure",
-            "Merkan Quarter\nBrochure",
-            "Refad Logistics\nSolutions"
-        ]
+        items: ["Refad\nArabic Portfolio", "Refad\nEnglish Portfolio", "Miraf District\nGeneral brochure", "Miraf Residences\nSales brochure", "Miraf Business Tower\nLeasing brochure", "Miraf Plaza\nLeasing brochure", "Merkan Quarter\nGeneral brochure", "Refad Logistics\nSolutions"]
     },
     footer: {
         mainMenu: "Main Menu",
@@ -123,3 +117,4 @@ export default {
         ]
     }
 };
+

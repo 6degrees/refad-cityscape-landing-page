@@ -1,5 +1,6 @@
 "use client";
 
+import MirafSection from "@/components/MirafSection";
 import Banner from "@/components/Banner";
 import {useTranslation} from "react-i18next";
 import CommunitySignupSection from "@/components/CommunitySignupSection";
@@ -52,6 +53,7 @@ export default function HomePage() {
                 {/* Primary hero section */}
                 <Banner/>
                 <div className="site-bg">
+                <MirafSection />
                 <CommunitySignupSection heading={t("signup.title")} subheading={t("signup.subtitle")}/>
                 <Resources />
                 <Footer/>
@@ -60,3 +62,4 @@ export default function HomePage() {
         </>
     );
 }
+

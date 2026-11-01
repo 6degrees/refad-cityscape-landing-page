@@ -37,7 +37,7 @@ export default function Resources({
     const resourcesHeading = heading || t("resources.heading");
     const resourcesItems: Resource[] = items || (t("resources.items", { returnObjects: true }) as string[]).map((title: string) => ({ title }));
     return (
-        <section id="resources" className={`w-full pt-8 md:pt-12 pb-12 md:pb-20 ${className}`}>
+        <section id="resources" className={`resources-section w-full pt-8 md:pt-12 pb-12 md:pb-20 ${className}`}>
             <div className="container-x">
                 <h3 className="text-lg md:text-xl lg:text-2xl text-blush font-light pb-4 md:pb-6 mb-6 md:mb-8">
                     {resourcesHeading}
@@ -59,13 +59,13 @@ function Card({ title, href }: { title: string; href?: string }) {
     
     const content = (
         <div
-            className="relative p-6 md:p-8 text-blush overflow-hidden rounded-[25px]
+            className="resource-card relative p-6 md:p-8 text-blush overflow-hidden rounded-[25px]
                 min-h-[180px] md:min-h-[240px] lg:min-h-[320px]
                 bg-[rgba(234,214,189,0.02)] backdrop-blur-md transition-all duration-200 ease-out
                 hover:backdrop-blur-lg hover:bg-[rgba(234,214,189,0.05)] hover:-translate-y-0.5"
         >
             <div className={`${isArabic ? htmoshreqFont.className : arizonaSerif.className} whitespace-pre-line ${isArabic ? 'pl-10' : 'pr-10'} text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] lg:leading-[40px] font-light`} style={{ color: "#EAD6BD" }}>
-                {title}
+                {title.split("\n").map((line, index) => <span className={index === 0 ? "resource-title" : "resource-subtitle"} key={index}>{line}</span>)}
             </div>
 
             <div className={`absolute bottom-4 ${isArabic ? 'left-4' : 'right-4'} opacity-80 transition-opacity duration-200 group-hover:opacity-100`}>
@@ -84,5 +84,7 @@ function Card({ title, href }: { title: string; href?: string }) {
 
     return content;
 }
+
+
 
 

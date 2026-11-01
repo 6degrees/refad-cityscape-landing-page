@@ -98,6 +98,7 @@ export const metadata = {
 |--------------------------------------------------------------------------
 */
 
+const moshreq = localFont({ src: "./fonts/HTMoshreq-Regular.woff2", variable: "--font-moshreq", display: "swap" });
 // English Display
 const abcArizonaSerif = localFont({
     src: [{ path: "./fonts/ABCArizonaSerif-Regular.woff", weight: "400", style: "normal" }],
@@ -122,7 +123,7 @@ const graphikArabic = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang={i18n.language || "en"} dir={i18n.language === "ar" ? "rtl" : "ltr"}>
-        <body className={[abcArizonaSerif.variable, graphikEn.variable, graphikArabic.variable].join(" ") }>
+        <body className={[moshreq.variable, abcArizonaSerif.variable, graphikEn.variable, graphikArabic.variable].join(" ") }>
         <CustomCursor />
         <AppProvider>
             <I18nProvider>
