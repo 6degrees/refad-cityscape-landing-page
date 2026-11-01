@@ -51,7 +51,7 @@ export default function Header() {
                 <div className="flex items-start justify-between w-full py-5">
                     {/* Logo */}
                     <a href="#" className="flex items-center select-none">
-                        <Image src="/icons/logo.png" alt="Refad Logo" width={100} height={60} priority className="h-28 w-28 md:h-32 md:w-32 object-contain no-hover-scale"/>
+                        <Image src="/images/design/logo-en.svg" alt="Refad Logo" width={100} height={60} priority className="h-28 w-28 md:h-32 md:w-32 object-contain no-hover-scale"/>
                     </a>
 
                     {/* Desktop nav */}
@@ -65,7 +65,7 @@ export default function Header() {
                             lang={selectedLanguage === "ar" ? "en" : "ar"}
                             onClick={() => handleLanguageSelection(selectedLanguage)}
                             className={`rounded-full border border-white/60 px-4 py-2 cursor-pointer text-white/95 hover:bg-white/10 transition-colors duration-300 ${selectedLanguage === 'ar' ? "en-display" : "ar-display"}`}>
-                            {selectedLanguage === 'ar' ? "English" : "عربي"}
+                            {selectedLanguage === 'ar' ? "En" : "عربـي"}
                         </button>
                     </nav>
 
@@ -80,7 +80,7 @@ export default function Header() {
                             lang={selectedLanguage === "ar" ? "en" : "ar"}
                             onClick={() => handleLanguageSelection(selectedLanguage)}
                             className={`rounded-full border border-white/60 px-3 py-1.5 text-sm cursor-pointer text-white/95 hover:bg-white/10 transition-colors duration-300 ${selectedLanguage === 'ar' ? "en-display" : "ar-display"}`}>
-                            {selectedLanguage === 'ar' ? "English" : "عربي"}
+                            {selectedLanguage === 'ar' ? "En" : "عربـي"}
                         </button>
                     </nav>
                 </div>
@@ -89,4 +89,3 @@ export default function Header() {
         </header>
     );
 }
-

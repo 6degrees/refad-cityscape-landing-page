@@ -97,7 +97,7 @@ export default function Footer(
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
                         {/* Logo */}
                         <div className="md:col-span-3">
-                            <Image src="/icons/logo.png" alt="Refad" width={240} height={120} className="object-contain no-hover-scale" />
+                            <Image src="/images/design/logo-en.svg" alt="Refad" width={240} height={120} className="object-contain no-hover-scale" />
                         </div>
 
                         {/* Main Menu */}
@@ -139,7 +139,7 @@ export default function Footer(
                 </div>
 
                 {/* Copyright */}
-                <div className="py-6 text-xs text-blush/70">{t("footer.copyright")}</div>
+                <div className="py-6 text-xs text-blush/70">{t("footer.copyright").replace(/\b20\d{2}\b/, String(new Date().getFullYear()))}</div>
             </div>
         </footer>
     );

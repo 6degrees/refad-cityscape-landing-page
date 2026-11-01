@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import CountryCodePicker from "@/components/CountryCodePicker";
 import AnimatedText from "@/components/AnimatedText";
 import localFont from "next/font/local";
 
@@ -26,32 +27,8 @@ export default function CommunitySignupSection(
         textClass = "text-blush",
     }: CommunitySignupSectionProps)
 {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [countryCode, setCountryCode] = useState("+966");
-
-    // Common country codes
-    const countryCodes = [
-        { code: "+966", country: "Saudi Arabia" },
-        { code: "+971", country: "UAE" },
-        { code: "+965", country: "Kuwait" },
-        { code: "+974", country: "Qatar" },
-        { code: "+973", country: "Bahrain" },
-        { code: "+968", country: "Oman" },
-        { code: "+20", country: "Egypt" },
-        { code: "+1", country: "USA/Canada" },
-        { code: "+44", country: "UK" },
-        { code: "+33", country: "France" },
-        { code: "+49", country: "Germany" },
-        { code: "+39", country: "Italy" },
-        { code: "+34", country: "Spain" },
-        { code: "+61", country: "Australia" },
-        { code: "+91", country: "India" },
-        { code: "+86", country: "China" },
-        { code: "+81", country: "Japan" },
-        { code: "+82", country: "South Korea" },
-        { code: "+65", country: "Singapore" },
-        { code: "+60", country: "Malaysia" },
-    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -130,67 +107,37 @@ export default function CommunitySignupSection(
                                 <input type="hidden" name="inp_9145" value="19" />
                                 <input type="hidden" name="optin" value="y" />
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
-                                    {/* First Name */}
-                                    <div>
-                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}><span className="mr-1">*</span>{t("signup.form.firstName.label")}</label>
-                                        <input type="text" name="inp_1" required className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                <div className="registration-fields">
+                                    <div className="registration-field">
+                                        <label className="sr-only" htmlFor="registration-first">{t("signup.form.firstName.label")}</label>
+                                        <input id="registration-first" type="text" name="inp_1" autoComplete="given-name" required placeholder={`* ${t("signup.form.firstName.label")}`} />
                                     </div>
-
-                                    {/* Surname */}
-                                    <div>
-                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}><span className="mr-1">*</span>{t("signup.form.surname.label")}</label>
-                                        <input type="text" name="inp_2" required className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                    <div className="registration-field">
+                                        <label className="sr-only" htmlFor="registration-last">{t("signup.form.surname.label")}</label>
+                                        <input id="registration-last" type="text" name="inp_2" autoComplete="family-name" required placeholder={`* ${t("signup.form.surname.label")}`} />
                                     </div>
-
-                                    {/* Email */}
-                                    <div>
-                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}><span className="mr-1">*</span>{t("signup.form.email.label")}</label>
-                                        <input type="email" name="inp_3" required className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                    <div className="registration-field">
+                                        <label className="sr-only" htmlFor="registration-email">{t("signup.form.email.label")}</label>
+                                        <input id="registration-email" type="email" name="inp_3" autoComplete="email" required placeholder={`* ${t("signup.form.email.label")}`} />
                                     </div>
-
-                                    {/* Phone */}
-                                    <div>
-                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>{t("signup.form.phone.label")}</label>
-                                        <div className="flex items-center gap-2">
-                                            <div className="relative" style={{ minWidth: "120px" }}>
-                                                <select value={countryCode} name="inp_9142" required onChange={(e) => setCountryCode(e.target.value)} className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 text-blush/70 appearance-none pr-6 cursor-pointer`}>
-                                                    {countryCodes.map((item) => (
-                                                        <option key={item.code} value={item.code} className="bg-[#1a0d0d] text-blush">
-                                                            {item.code} {item.country}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                                <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                                                    <svg className="w-4 h-4 text-blush/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <input type="tel" name="inp_15" required className={`${graphikArabic.className} flex-1 bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2`}/>
+                                    <div className="registration-phone">
+                                        <CountryCodePicker value={countryCode} onChange={setCountryCode} arabic={i18n.language === "ar"} />
+                                        <div className="registration-field registration-phone-number">
+                                            <label className="sr-only" htmlFor="registration-phone">{t("signup.form.phone.label")}</label>
+                                            <input id="registration-phone" type="tel" name="inp_15" autoComplete="tel-national" required placeholder={`* ${t("signup.form.phone.label")}`} />
                                         </div>
                                     </div>
-
-                                    {/* Request Type */}
-                                    <div>
-                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}><span className="mr-1">*</span>{t("signup.form.requestType.label")}</label>
-                                        <select name="inp_9143" required className={`${graphikArabic.className} appearance-none w-full text-[#ddd3c1] border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 pr-10`} defaultValue="">
-                                            <option value="" disabled>{t("signup.form.requestType.options.0")}</option>
-                                            <option value="1">{t("signup.form.requestType.options.1")}</option>
-                                            <option value="2">{t("signup.form.requestType.options.2")}</option>
-                                            <option value="3">{t("signup.form.requestType.options.3")}</option>
-                                            <option value="4">{t("signup.form.requestType.options.4")}</option>
-                                            <option value="5">{t("signup.form.requestType.options.5")}</option>
-                                            <option value="6">{t("signup.form.requestType.options.6")}</option>
-                                            <option value="7">{t("signup.form.requestType.options.7")}</option>
-                                            <option value="8">{t("signup.form.requestType.options.8")}</option>
+                                    <div className="registration-field registration-request">
+                                        <label className="sr-only" htmlFor="registration-request">{t("signup.form.requestType.label")}</label>
+                                        <select id="registration-request" name="inp_9143" required defaultValue="">
+                                            <option value="" disabled>{`* ${t("signup.form.requestType.label")}`}</option>
+                                            {Array.from({length: 8}, (_, i) => <option key={i + 1} value={String(i + 1)}>{t(`signup.form.requestType.options.${i + 1}`)}</option>)}
                                         </select>
+                                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m3 8 9 9 9-9" stroke="currentColor" strokeWidth="1" /></svg>
                                     </div>
-
-                                    {/* Message */}
-                                    <div className="sm:col-span-2">
-                                        <label className={`${graphikArabic.className} block text-sm mb-2 text-blush/70 font-light`}>{t("signup.form.subject.label")}</label>
-                                        <textarea name="inp_9141" rows={3} className={`${graphikArabic.className} w-full bg-transparent border-0 border-b border-blush/30 focus:border-blush/70 focus:outline-none py-2 resize-none`}/>
+                                    <div className="registration-field registration-message">
+                                        <label className="sr-only" htmlFor="registration-message">{t("signup.form.subject.label")}</label>
+                                        <textarea id="registration-message" name="inp_9141" rows={3} placeholder={`* ${t("signup.form.subject.label")}`} />
                                     </div>
                                 </div>
 

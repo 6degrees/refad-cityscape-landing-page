@@ -1,0 +1,46 @@
+/* Simple country selector. */
+#register .country-picker { position: relative; flex: 0 0 80px; min-width: 0; z-index: 20; }
+#register .country-picker .country-picker-trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; min-width: 0; min-height: 38px; height: 3.3cqw;
+    margin: 0; padding: 0 0 1cqw; border: 0; border-bottom: 1px solid #c3b6ac;
+    border-radius: 0; background: transparent; color: #b8aaa1;
+    font-size: clamp(12px, 1.3cqw, 22px); line-height: 1.5; cursor: pointer;
+}
+#register .country-picker-trigger > svg { width: 14px; height: 14px; }
+#register .country-picker-trigger[aria-expanded="true"] { color: #fff9ee; }
+#register .country-picker-panel {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    width: min(260px, 80vw); padding: 6px;
+    border: 1px solid #79645d; border-radius: 4px;
+    background: #302321; color: #f3e7d7;
+}
+#register .country-picker-search { display: flex; align-items: center; gap: 8px; padding: 0 8px; margin-bottom: 4px; border-bottom: 1px solid #79645d; }
+#register .country-picker-search > svg { flex: 0 0 15px; width: 15px; height: 15px; color: #b8aaa1; }
+#register .country-picker-search input {
+    width: 100%; min-height: 40px; height: 40px; padding: 0; border: 0;
+    font-size: 13px; text-align: start; color: #fff9ee; outline: none;
+}
+#register .country-picker-options { max-height: min(220px, 40dvh); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #917665 transparent; }
+#register .country-picker-option { display: flex; align-items: center; gap: 12px; min-height: 40px; padding: 8px; border-radius: 2px; cursor: pointer; font-size: 13px; }
+#register .country-picker-option.is-active { background: #ffffff0d; }
+#register .country-picker-option[aria-selected="true"] { background: #ffffff16; }
+#register .country-picker-name { flex: 1; min-width: 0; }
+#register .country-picker-code { font-size: 13px; color: #cbbdb2; }
+#register .country-picker-empty { padding: 18px 8px; font-size: 13px; text-align: center; color: #b9a99d; }
+@media (max-width: 600px) {
+    #register .registration-fields { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    #register .registration-fields input,
+    #register .registration-fields select,
+    #register .registration-fields textarea { font-size: 16px; min-height: 44px; }
+    #register .country-picker { flex-basis: 76px; }
+    #register .country-picker .country-picker-trigger { height: 44px; padding-bottom: 10px; font-size: 16px; }
+    #register .country-picker-panel { width: min(260px, 80vw); }
+    #register .country-picker-search input { font-size: 16px; }
+    #register .country-picker-option { min-height: 44px; font-size: 14px; }
+    #register .country-picker-code { font-size: 14px; }
+    #register .registration-phone { gap: 16px; }
+    #register .registration-message textarea { min-height: 90px; }
+    #register .registration-request svg { top: 4px; }
+    #register form > .mt-8 button { min-height: 44px; font-size: 14px; }
+}
